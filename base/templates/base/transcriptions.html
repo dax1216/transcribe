@@ -1,0 +1,23 @@
+{% extends 'default.html' %}
+
+{% block content %}
+<h3 class="text-body-emphasis">Audio List</h3>
+<hr class="col-lg-4 col-md-2 mb-3">
+<p><a href="{% url 'upload_file' %}" class="icon-link mb-3">Upload New</a></p>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th width="50%">Title</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+{% for audio in audios %}
+        <tr>
+            <td><a href="{% url 'view_transcription' audio.id %}">{{ audio.title }}</a></td>
+            <td>{{ audio.get_status_display }}</td>
+        </tr>
+{% endfor %}
+    </tbody>
+</table>
+{% endblock content %}
